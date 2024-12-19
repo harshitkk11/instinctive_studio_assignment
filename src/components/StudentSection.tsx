@@ -64,7 +64,7 @@ const StudentSection: React.FC = () => {
 
   const cohort = ["2024-2025", "2023-2024"];
   const grade = ["9", "10", "11", "12"];
-  const courses = ["CBSE 9 Math", "CBSE 9 Science"];
+  const courses = ["CBSE 9 Science", "CBSE 9 Math"];
 
   const [selectedCohort, setSelectedCohort] = useState<string>(cohort[0]);
   const [selectedGrade, setSelectedGrade] = useState<string>(grade[0]);
