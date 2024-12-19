@@ -1,6 +1,6 @@
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import StudentSection from "./components/StudentSection";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
+import StudentSection from "../components/StudentSection";
 
 export default function Home() {
   return (

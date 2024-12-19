@@ -1,13 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const Sidebar = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const pathname = searchParams.get("page");
+
+  useEffect(() => {
+    if (!pathname) {
+      router.push("/?page=dashboard");
+    }
+  }, [router, pathname]);
 
   return (
     <aside className="sm:w-[248px] max-w-[248px] h-full bg-white py-[30px] px-[12px] flex flex-col justify-start items-start gap-[30px]">

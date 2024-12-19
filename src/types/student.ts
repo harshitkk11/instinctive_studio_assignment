@@ -3,7 +3,6 @@ export interface Student {
   studentName: string;
   cohort: string;
   courses: string[];
-  dateOfJoin: string;
-  lastLogin?: string;
-  status: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
