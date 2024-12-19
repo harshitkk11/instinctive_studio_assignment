@@ -40,17 +40,10 @@ import {
   updateStudent,
   deleteStudent,
 } from "../redux/thunks/studentThunks";
-import { useAppSelector } from "@/redux/hooks";
-import { useDispatch } from "react-redux";
-import { Student } from "@/types/student";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { Student, NewStudent } from "@/types/student";
 
 import { format } from "date-fns";
-
-interface NewStudent {
-  studentName: string;
-  cohort: string;
-  courses: string[];
-}
 
 const StudentSection: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -64,8 +57,10 @@ const StudentSection: React.FC = () => {
     courses: [],
   });
 
-  const dispatch = useDispatch();
-  const { list }: { list: Student[] } = useAppSelector((state) => state.students);
+  const dispatch = useAppDispatch();
+  const { list }: { list: Student[] } = useAppSelector(
+    (state) => state.students
+  );
 
   const cohort = ["2024-2025", "2023-2024"];
   const grade = ["9", "10", "11", "12"];
@@ -91,7 +86,7 @@ const StudentSection: React.FC = () => {
     }
 
     dispatch(addStudent(newStudent))
-      .then((response) => {
+      .then(() => {
         toast.success("Student added successfully!");
         setNewStudent({
           studentName: "",
@@ -119,7 +114,7 @@ const StudentSection: React.FC = () => {
     }
 
     await dispatch(updateStudent({ id: selectedStudent, updates: newStudent }))
-      .then((response) => {
+      .then(() => {
         toast.success("Student updated successfully!");
         setNewStudent({
           studentName: "",
@@ -134,11 +129,11 @@ const StudentSection: React.FC = () => {
       });
   };
 
-  const handleDeleteStudent = async (e) => {
+  const handleDeleteStudent = async (e: React.FormEvent) => {
     e.preventDefault();
 
     await dispatch(deleteStudent(selectedStudent))
-      .then((response) => {
+      .then(() => {
         toast.success("Student deleted successfully!");
         setNewStudent({
           studentName: "",

@@ -19,6 +19,7 @@ export async function GET(
 
     return NextResponse.json(student);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to fetch student" },
       { status: 500 }
@@ -41,6 +42,7 @@ export async function PUT(
 
     return NextResponse.json(updatedStudent);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to update student" },
       { status: 500 }
@@ -61,6 +63,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: "Student deleted successfully" });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to delete student" },
       { status: 500 }

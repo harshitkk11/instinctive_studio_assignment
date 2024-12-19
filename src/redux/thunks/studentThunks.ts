@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Student } from "@/types/student";
+import { Student, NewStudent } from "@/types/student";
 
 export const fetchStudents = createAsyncThunk(
   "students/fetchStudents",
@@ -12,7 +12,7 @@ export const fetchStudents = createAsyncThunk(
 
 export const addStudent = createAsyncThunk(
   "students/addStudent",
-  async (student: Omit<Student, "id">) => {
+  async (student: NewStudent) => {
     const response = await axios.post("/api/student", student);
     return response.data;
   }
@@ -20,7 +20,7 @@ export const addStudent = createAsyncThunk(
 
 export const updateStudent = createAsyncThunk(
   "students/updateStudent",
-  async ({ id, updates }: { id: number; updates: Partial<Student> }) => {
+  async ({ id, updates }: { id: number | null; updates: Partial<Student> }) => {
     const response = await axios.put(`/api/student/${id}`, updates);
     return response.data;
   }
@@ -28,7 +28,7 @@ export const updateStudent = createAsyncThunk(
 
 export const deleteStudent = createAsyncThunk(
   "students/deleteStudent",
-  async (id: number) => {
+  async (id: number | null) => {
     await axios.delete(`/api/student/${id}`);
     return id;
   }

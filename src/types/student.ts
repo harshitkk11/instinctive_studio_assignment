@@ -6,3 +6,9 @@ export interface Student {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface NewStudent {
+  studentName: string;
+  cohort: string;
+  courses: string[];
+}

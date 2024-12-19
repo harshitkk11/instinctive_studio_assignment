@@ -8,6 +8,7 @@ export async function GET() {
     const students = await prisma.student.findMany();
     return NextResponse.json(students);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to fetch students" },
       { status: 500 }
@@ -25,6 +26,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(student, { status: 201 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to create student" },
       { status: 500 }
