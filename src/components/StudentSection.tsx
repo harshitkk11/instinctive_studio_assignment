@@ -86,14 +86,16 @@ const StudentSection: React.FC = () => {
     }
 
     dispatch(addStudent(newStudent))
-      .then(() => {
-        toast.success("Student added successfully!");
-        setNewStudent({
-          studentName: "",
-          cohort: "",
-          courses: [],
-        });
-        setOpen(false);
+      .then((response) => {
+        if (response) {
+          toast.success("Student added successfully!");
+          setNewStudent({
+            studentName: "",
+            cohort: "",
+            courses: [],
+          });
+          setOpen(false);
+        }
       })
       .catch((error) => {
         console.error("Error adding student:", error);
@@ -114,14 +116,16 @@ const StudentSection: React.FC = () => {
     }
 
     await dispatch(updateStudent({ id: selectedStudent, updates: newStudent }))
-      .then(() => {
-        toast.success("Student updated successfully!");
-        setNewStudent({
-          studentName: "",
-          cohort: "",
-          courses: [],
-        });
-        setOpenUpdate(false);
+      .then((response) => {
+        if (response) {
+          toast.success("Student updated successfully!");
+          setNewStudent({
+            studentName: "",
+            cohort: "",
+            courses: [],
+          });
+          setOpenUpdate(false);
+        }
       })
       .catch((error) => {
         console.error("Error updating student:", error);
@@ -133,14 +137,16 @@ const StudentSection: React.FC = () => {
     e.preventDefault();
 
     await dispatch(deleteStudent(selectedStudent))
-      .then(() => {
-        toast.success("Student deleted successfully!");
-        setNewStudent({
-          studentName: "",
-          cohort: "",
-          courses: [],
-        });
-        setOpenUpdate(false);
+      .then((response) => {
+        if (response) {
+          toast.success("Student deleted successfully!");
+          setNewStudent({
+            studentName: "",
+            cohort: "",
+            courses: [],
+          });
+          setOpenUpdate(false);
+        }
       })
       .catch((error) => {
         console.error("Error deleting student:", error);
